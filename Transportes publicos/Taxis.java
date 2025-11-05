@@ -1,22 +1,24 @@
 import parcial.Vehiculo;
 
 public class Taxis extends Vehiculo{
-    private double valor;
+    private double costo_por;
     private double extra;
     private int anio_minimo;
-    public Taxis(double valor, double extra, int anio_minimo){
-        super();
-        this.valor = valor;
+
+    public Taxis(double costo_por, double kilometrosRecorridos, double extra, int anio_minimo){
+        
+        this.costo_por = costo_por;
         this.extra = extra;
-        this.anio_minimo = anio_minimo;
+        this.anio_minimo = anio_minimo; 
     }
 
     public double costoMantenimiento(){
-        valor = this.valor;
-        if(this.getModelo() > anio_minimo){
+        costo_por = this.costo_por * this.getKilometrosRecorridos();
 
-            valor += extra;
+        if(this.getModelo() < anio_minimo){
+
+            costo_por += extra;
         }
-        return valor;
+        return costo_por;
     }
 }
