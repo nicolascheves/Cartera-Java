@@ -1,10 +1,16 @@
 public class Archivo {
     protected String name;
 
-    // public asbtract ElementoFS getCopia(Condicion cc);
-
     public Archivo(String name){
         this.name = name;
+    }
+
+    // getSiguiente ~= buscar
+    // no usa estrategia aca, sino UNA SI DEFINIDA (this.getEntregado() Booleano)
+    public ElementoFS getSiguiente(Comparator<Archivo> estrategia){
+        if(this.getTamanio()> 0.5){
+            return this;
+        } else return null;
     }
     
     // copia indiscriminada de Archivos
@@ -25,4 +31,5 @@ public class Archivo {
         }
     }
 }
+
 
