@@ -7,36 +7,48 @@ public class Directorio extend ElementoFS{
         this.nombre = nombre;
     }
 
-    // public Directorio getCopia(){
-    public Directorio getCopia(Condicion cc){
-        // con esto, automaticamente (no necesito definir el oculto)
-        // Directorio copia = this.getnombre();?
-        Directorio copia = this.getCopiaVacia();
+    // busqueda en profundidad con estrategia indeterminada (comparator)
+    public Archivo getSiguiente(Comparator<Archivo> estrategia){
+        Archivo siguiente = null;
+        for(ElementoFS e:elementos){
+            ElementoFS archSiguiente = e.getSiguiente(estrategia);
+            if(asignarNuevoSiguiente(siguiente, archSiguiente, estrategia)){
+                siguiente = archSigueiente;
+            }
+        }
+        return siguiente;
+    }
 
-        // controla si no es un contendore vacio
-        boolean seAgregoAlgo = false;
+    public boleean asignarNuevoSig(Archivo inicial, ElementFS hijos, Comparator<Archivo> estrategia){
+        return (inicial== null || hijos !=null && estrategia.compare(hijos, anterior) < 0));
+    }
+
+    // Copia a profundidad con un criterio de seleccion (sin sub arreglo x archivo)
+    public ElementoFS getCopia(Condicion cc){
+        Directorio copia = duplicar();
+        boolean copiable = false;
 
         for(ElementoFS elem:elementos){
 
-            ElementoFS copiaElem = elem.getCopia(cc);
-            if(copiaElem != null){
-                copia.agregarElemento(elem.getCopia());
-                // copia.agregarElemento(copiaElem);
-                seAgregoAlgo = true;
+            ElementoFS copiasH = elem.getCopia(cc);
+            if(copiasH != null){
+                copia.agregarElemento(copiasH);
+                copiable = true;
             }    
         }
-        if(seAgregoAlgo){
+        if(copiable){ 
             return copia;
         } else {
             return null;
         }
     }
     
-    public Directorio getCopiaVacia(){
-        return new Directorio(this.nombre);
+    public Directorio duplicar(){
+        return new Directorio(this.getName());
     }
 
     // busqueda| condicion , add x .doc
     // Copia con condicion
 
 }
+
