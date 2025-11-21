@@ -6,18 +6,23 @@ public class Archivo {
     public Archivo(String name){
         this.name = name;
     }
-
-    public Archivo getCopia(Condicion cc){
-        Archivo copia = new Archivo(this.getNombre());
-        return copia;   
+    
+    // copia indiscriminada de Archivos
+    public ElementoFS getCopia(){        
+        return new Archivo(this.getNombre());   
     }
 
-    // copia con condicion
-    public Archivo getCopia(Condicion cc){
+    // copia con condicion ; El tipo de duplicar esta bien?
+    public Archivo duplicar(){
+        return new Archivo();
+    }
+
+    public ElementoFS getCopia(Condicion cc){
         if(cc.cumple(this)){
-            return new Archivo(this.name);
+            return new Archivo(this.getName());
         } else {
             return null;
         }
     }
 }
+
