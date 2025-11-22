@@ -12,6 +12,12 @@ public class Archivo {
             return this;
         } else return null;
     }
+
+    // ~= buscar con criterio
+    public int contarConCriterio(Condicion cc){
+        if(cc.cumple(this)) return 1;
+        else return 0;
+    }
     
     // copia indiscriminada de Archivos
     public ElementoFS getCopia(){        
@@ -31,5 +37,6 @@ public class Archivo {
         }
     }
 }
+
 
 
