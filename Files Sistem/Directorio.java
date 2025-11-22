@@ -24,10 +24,10 @@ public class Directorio extend ElementoFS{
     }
 
     // contar objetos con criterio ) busqueda ~= 
-    public int archivoDeInteres(Condicion cc){
+    public int contarConCriterio(Condicion cc){
         int suma = 0;
         for (ElementoFS e:elementos){
-            suma += e.archivoDeInteres(cc);
+            suma += e.contarConCriterio(cc);
             if (contable(e, cc)) {
                 suma++;
             }
@@ -69,5 +69,6 @@ public class Directorio extend ElementoFS{
     // Copia con condicion
 
 }
+
 
 
