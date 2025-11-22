@@ -23,6 +23,24 @@ public class Directorio extend ElementoFS{
         return (inicial== null || hijos !=null && estrategia.compare(hijos, anterior) < 0));
     }
 
+    // contar objetos con criterio ) busqueda ~= 
+    public int archivoDeInteres(Condicion cc){
+        int suma = 0;
+        for (ElementoFS e:elementos){
+            suma += e.archivoDeInteres(cc);
+            if (contable(e, cc)) {
+                suma++;
+            }
+        }
+        return suma;
+    }
+
+    public boolean contable(ElementoFS e, Condicion cc){
+        return cc.cumple(e) && e.getTamanio() > 5;
+    }        
+
+    // retorna lista con un criterio de busqueda
+        
     // Copia a profundidad con un criterio de seleccion (sin sub arreglo x archivo)
     public ElementoFS getCopia(Condicion cc){
         Directorio copia = duplicar();
@@ -51,4 +69,5 @@ public class Directorio extend ElementoFS{
     // Copia con condicion
 
 }
+
 
